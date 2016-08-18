@@ -1,11 +1,25 @@
 <div class="container">
-  <h1 class="text-primary text-center">Home Component</h1>
-  <h2 class="text-center">Connected Home Component</h2>
-  
-  <div class="row text-center">
-    <p>
-     Lorem Ipsum...
-    </p>
-  </div>
-  
+	<div class="jumbotron">
+		<h1 class="text-center text-primary">Current Polls</h1>
+
+		<div *ngIf="!userLoggedIn" class="text-center">
+			<p>Click on any polls shown to vote or view results. You must be logged in to create a new poll.</p>
+			<p><a class="btn btn-primary btn-lg" [routerLink]="['login']" role="button">Login</a></p>			
+		</div>
+
+		<div *ngIf="userLoggedIn" class="text-center">
+			<p>Click on any polls shown to vote or view results.</p>
+			<p><a class="btn btn-primary btn-lg" [routerLink]="['polls']" role="button">Manage Your Polls</a></p>			
+		</div>
+
+	</div>
+
+	<p>
+	  All user's polls in the system with the number of votes for each poll. Click on a poll to vote on it.
+	</p>
+
+	<div class="list-group">
+		<a *ngFor="let poll of polls" (click)="showPollDetail(poll._id)" class="list-group-item">{{ poll.name }}&nbsp;<span class="badge">{{ poll.totalVotes }}</span></a>
+	</div>
+
 </div>
