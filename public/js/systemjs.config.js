@@ -9,7 +9,9 @@ var isPublic = typeof window != "undefined";
   var map = {
     'app':                        (isPublic)? '' : 'app', // 'dist',
     '@angular':                   (isPublic)? '@angular' : 'node_modules/@angular',
-    //'ng2-cookies': 'node_modules/ng2-cookies',
+    'd3':                         'node_modules/d3',    
+    'nvd3':                       'node_modules/nvd3/build',    
+    'ng2-nvd3':                   'node_modules/ng2-nvd3/build/lib',
     'angular2-in-memory-web-api': (isPublic)? 'angular2-in-memory-web-api' : 'node_modules/angular2-in-memory-web-api',
     'rxjs':                       (isPublic)? 'rxjs' : 'node_modules/rxjs'
   };
@@ -17,7 +19,9 @@ var isPublic = typeof window != "undefined";
   var packages = {
     'app':                        { main: 'main.js',  defaultExtension: 'js' },
     'rxjs':                       { defaultExtension: 'js' },
-    //'ng2-cookies':                { defaultExtension: 'js' },
+    'd3':                         { main: 'd3.js', defaultExtension: 'js' },
+    'nvd3':                       { main: 'nv.d3.js', defaultExtension: 'js' },
+    'ng2-nvd3':                   { main: 'ng2-nvd3.js', defaultExtension: 'js' },
     'angular2-in-memory-web-api': { main: 'index.js', defaultExtension: 'js' }
   };
   var ngPackageNames = [
@@ -28,7 +32,7 @@ var isPublic = typeof window != "undefined";
     'http',
     'platform-browser',
     'platform-browser-dynamic',
-    //'ng2-cookies/ng2-cookies',
+    'ng2-nvd3',
     'router',
     'router-deprecated',
     'upgrade'

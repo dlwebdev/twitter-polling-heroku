@@ -17,9 +17,10 @@ export class HomeComponent implements OnInit {
     polls: any[] = []; 
     userLoggedIn: boolean = false;
 
-    constructor(private http: Http) {
-      //console.log("GET POLL DATA!");
-    }
+    constructor(
+        private http: Http,
+        private router: Router
+    ) { }
     
     ngOnInit() {
         this.getAllPolls();
@@ -37,7 +38,12 @@ export class HomeComponent implements OnInit {
                     }
                 }
             );     
-    }     
+    }  
+    
+    showPollDetail(id: string) {
+        //console.log('Will send to poll detail with poll of: ', id);
+        this.router.navigate(['/poll-detail', id]);    
+    }    
     
     getAllPolls() {
         this.http.get('/api/polls')

@@ -11,6 +11,24 @@ router.get('/', function(req, res) {
     });
 });
 
+router.post('/', function(req, res) {
+    // Create a new poll
+
+    var poll = new Poll({
+      name: req.body.name,
+      creatorId: req.body.creatorId,
+      options: req.body.options
+    });
+
+    poll.save(function (err, poll) {
+      if (err) { 
+        console.log('error saving poll: ', err);
+      }
+      res.status(201).json(poll);
+    });
+
+});
+
 router.get('/:id', function(req, res) {
     var id = req.params.id;
     Poll.findOne({'_id':id},function(err, result) {

@@ -23,15 +23,21 @@ router.get('/get-current-user', function(req, res, next) {
   if (req.isAuthenticated()) {
     res.json({'user': req.user});
   } else {
+    res.redirect('/');
     res.json({'userId': '-1'});
   }
 }); 
+
+router.get('/logout', function(req, res, next) {
+    req.logout();
+    res.redirect('/');
+});
 
 router.get('/get-id-of-logged-in', function(req, res, next) {
   if (req.isAuthenticated()) {
     res.json({'user': req.user.twitter.id});
   } else {
-    res.json({'userId': '-1'});
+    res.json({'user': '-1'});
   }
 });
 

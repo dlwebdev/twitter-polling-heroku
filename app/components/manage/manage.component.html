@@ -1,0 +1,27 @@
+Data: {{ data | json }}
+
+<div *ngIf="poll" class="container">	
+	<h1 class="text-primary text-center">Poll Details</h1>
+	<!--<pre>{{ poll | json }}</pre>-->
+
+	<h2>{{ poll.name }}</h2>
+
+	<div class="row">
+		<div class="col-xs-12">
+
+			<div class="list-group">
+				<a *ngFor="let option of poll.options" class="list-group-item">{{ option.text }}&nbsp;<span class="badge">{{ option.val }}</span></a>
+			</div>
+
+		</div>
+	</div>	
+	
+	<div *ngIf="data" class="row">
+		<h2 class="text-center">Current Voting Results</h2>
+		<nvd3 [options]="options" [data]="data"></nvd3>
+	</div>
+
+	<div class="row">
+		<button class="btn btn-default" (click)="cancel()">Back to Polls</button>
+	</div>	
+</div>

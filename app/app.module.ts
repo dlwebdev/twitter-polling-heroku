@@ -6,9 +6,13 @@ import { routing } from "./routes";
 
 import { AppComponent }  from './app.component';
 import { AboutComponent } from "./components/about/about.component";
+import { PollsComponent } from "./components/polls/polls.component";
 import { HomeComponent } from "./components/home/home.component";
 import { LoginComponent } from "./components/login/login.component";
 import { NavbarComponent } from "./components/shared/navbar/navbar.component";
+import { ManagePollComponent } from "./components/manage/manage.component";
+
+import { PollService } from "./components/shared/services/polls.service";
 
 @NgModule({
     imports: [
@@ -17,11 +21,16 @@ import { NavbarComponent } from "./components/shared/navbar/navbar.component";
         JsonpModule,
         routing
     ],
+    providers: [
+        PollService
+    ],
     declarations: [
         AppComponent,
         NavbarComponent,
+        PollsComponent,
         AboutComponent,
         LoginComponent,
+        ManagePollComponent,
         HomeComponent
     ],
     bootstrap: [ AppComponent ]
