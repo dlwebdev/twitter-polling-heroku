@@ -16557,7 +16557,6 @@ $__System.registerDynamic("6", ["3", "7", "8", "9", "a", "b", "c", "d"], true, f
           _this.user = resp.user;
           _this.getUserPolls();
         }
-        console.log("user id: ", _this.userId);
       });
     };
     PollDetailComponent.prototype.setChart = function() {
@@ -16624,10 +16623,11 @@ $__System.registerDynamic("6", ["3", "7", "8", "9", "a", "b", "c", "d"], true, f
     };
     PollDetailComponent.prototype.savePoll = function() {
       var _this = this;
-      this.pollService.updatePoll(this.pollId, this.poll).subscribe(function(poll) {}, function(error) {
+      this.pollService.updatePoll(this.pollId, this.poll).subscribe(function(poll) {
+        _this.voted = true;
+      }, function(error) {
         return _this.errorMessage = error;
       });
-      this.voted = true;
     };
     PollDetailComponent.prototype.getPollData = function(id) {
       var _this = this;
@@ -16836,7 +16836,6 @@ $__System.registerDynamic("12", ["3", "7", "8", "9", "d"], true, function($__req
         } else {
           _this.router.navigate(['/login']);
         }
-        console.log("user id: ", _this.userId);
       });
     };
     PollsComponent.prototype.addPollOption = function() {
@@ -16957,8 +16956,7 @@ $__System.registerDynamic("f", ["3", "7", "8", "9"], true, function($__require, 
       });
     };
     HomeComponent.prototype.showPollDetail = function(id) {
-      var link = ['/poll-detail', id];
-      this.router.navigate(link);
+      this.router.navigate(['/poll-detail', id]);
     };
     HomeComponent.prototype.getAllPolls = function() {
       var _this = this;
@@ -52459,12 +52457,10 @@ $__System.registerDynamic("13", ["3", "8", "a", "b", "c", "d"], true, function($
       }];
     };
     ManagePollComponent.prototype.cancel = function() {
-      var link = ['/polls'];
-      this.router.navigate(link);
+      this.router.navigate(['/polls']);
     };
     ManagePollComponent.prototype.getPollData = function(id) {
       var _this = this;
-      console.log('Getting poll data for id of: ', id);
       this.pollService.getPoll(id).subscribe(function(poll) {
         _this.poll = poll;
         console.log("poll data: ", poll);
