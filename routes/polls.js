@@ -61,11 +61,13 @@ router.put('/:id', function(req, res) {
 router.delete('/:id', function(req, res) {
     //return res.send('API Route to DELETE a poll with id of: ' + req.params.id);
     var id = req.params.id;
+    var userId = req.user.twitter.id;
+    
     Poll.remove({'_id': id},function(result) {
-        Poll.find({}, function (err, polls) {
-            if(err) console.log('Err: ', err);
-            res.json(polls);
-        });      
+        Poll.find({'creatorId': userId}, function (err, polls) {
+          if(err) console.log('Err: ', err);
+          res.json(polls);
+        });        
     });    
 });
 
